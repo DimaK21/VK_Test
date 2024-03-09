@@ -14,7 +14,7 @@
         android:theme="@style/Theme.VKTest"
         tools:targetApi="31">
         <activity
-            android:name="ru.kryu.vktest.MainActivity"
+            android:name="ru.kryu.vktest.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
