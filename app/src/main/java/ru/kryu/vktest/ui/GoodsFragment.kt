@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kryu.vktest.R
 import ru.kryu.vktest.databinding.FragmentGoodsBinding
@@ -43,15 +44,30 @@ class GoodsFragment : Fragment() {
             showToast(it)
         }
         binding.btnNoContent.setOnClickListener { viewModel.getGoods() }
+        binding.rvGoods.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (dy > 0) {
+                        val position =
+                            (binding.rvGoods.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+                        val itemsCount = goodsAdapter!!.itemCount
+                        if (position >= itemsCount - 1) {
+                            if (viewModel.stateLiveData.value != GoodsScreenState.Loading) {
+                                viewModel.getGoods()
+                            }
+                        }
+                    }
+                }
+            }
+        )
     }
 
     private fun renderState(state: GoodsScreenState) {
         when (state) {
             is GoodsScreenState.Content -> {
                 binding.progressBar.visibility = View.GONE
-                binding.ivNoContent.visibility = View.GONE
-                binding.tvNoContent.visibility = View.GONE
-                binding.btnNoContent.visibility = View.GONE
+                binding.llNoContent.visibility = View.GONE
                 binding.rvGoods.visibility = View.VISIBLE
 
                 goodsAdapter?.addGoods(state.content)
@@ -59,17 +75,13 @@ class GoodsFragment : Fragment() {
 
             GoodsScreenState.Empty -> {
                 binding.progressBar.visibility = View.GONE
-                binding.ivNoContent.visibility = View.VISIBLE
-                binding.tvNoContent.visibility = View.VISIBLE
-                binding.btnNoContent.visibility = View.VISIBLE
+                binding.llNoContent.visibility = View.VISIBLE
                 binding.rvGoods.visibility = View.GONE
             }
 
             GoodsScreenState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
-                binding.ivNoContent.visibility = View.GONE
-                binding.tvNoContent.visibility = View.GONE
-                binding.btnNoContent.visibility = View.GONE
+                binding.llNoContent.visibility = View.GONE
             }
         }
     }

@@ -59,12 +59,18 @@ class GoodsViewModel(private val goodsUseCase: GoodsUseCase) : ViewModel() {
                         }
                     }
 
-                    else -> _stateLiveData.postValue(GoodsScreenState.Empty)
+                    else -> {
+                        if (lastState is GoodsScreenState.Content) {
+                            _stateLiveData.postValue(lastState)
+                        } else {
+                            _stateLiveData.postValue(GoodsScreenState.Empty)
+                        }
+                    }
                 }
             }
 
             is Resource.Success -> {
-                if (lastState is GoodsScreenState.Empty || resource.data!!.listGoods.isEmpty()) {
+                if (resource.data!!.listGoods.isEmpty()) {
                     _stateLiveData.postValue(GoodsScreenState.Empty)
                 } else {
                     _stateLiveData.postValue(

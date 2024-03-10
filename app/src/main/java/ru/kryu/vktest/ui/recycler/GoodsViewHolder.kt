@@ -8,7 +8,8 @@ import ru.kryu.vktest.R
 import ru.kryu.vktest.databinding.GoodsItemBinding
 import ru.kryu.vktest.domain.model.Goods
 
-class GoodsViewHolder(val binding: GoodsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class GoodsViewHolder(private val binding: GoodsItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(goods: Goods) {
         binding.tvTitle.text = goods.title
