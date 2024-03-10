@@ -15,15 +15,6 @@ import ru.kryu.vktest.presentation.GoodsViewModel
 
 const val API_BASE_URL = "https://dummyjson.com/"
 
-val diModule = module {
-    includes(
-        dataModule,
-        repositoryModule,
-        useCaseModule,
-        viewModelModule,
-    )
-}
-
 val dataModule = module {
     single<NetworkClient> {
         RetrofitNetworkClient(
@@ -56,4 +47,13 @@ val viewModelModule = module {
     viewModel {
         GoodsViewModel(goodsUseCase = get())
     }
+}
+
+val diModule = module {
+    includes(
+        dataModule,
+        repositoryModule,
+        useCaseModule,
+        viewModelModule,
+    )
 }

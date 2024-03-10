@@ -52,6 +52,11 @@ class GoodsViewModel(private val goodsUseCase: GoodsUseCase) : ViewModel() {
                 when (resource.errorType) {
                     ErrorType.NO_INTERNET, ErrorType.REMOTE_ERROR -> {
                         _toastLiveData.postValue(resource.errorType!!)
+                        if (lastState is GoodsScreenState.Loading || lastState is GoodsScreenState.Empty) {
+                            _stateLiveData.postValue(GoodsScreenState.Empty)
+                        } else {
+                            _stateLiveData.postValue(lastState)
+                        }
                     }
 
                     else -> _stateLiveData.postValue(GoodsScreenState.Empty)
@@ -59,7 +64,7 @@ class GoodsViewModel(private val goodsUseCase: GoodsUseCase) : ViewModel() {
             }
 
             is Resource.Success -> {
-                if (lastState is GoodsScreenState.Empty && resource.data!!.listGoods.isEmpty()) {
+                if (lastState is GoodsScreenState.Empty || resource.data!!.listGoods.isEmpty()) {
                     _stateLiveData.postValue(GoodsScreenState.Empty)
                 } else {
                     _stateLiveData.postValue(
