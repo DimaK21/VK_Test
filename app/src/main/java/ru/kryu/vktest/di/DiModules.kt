@@ -9,6 +9,7 @@ import ru.kryu.vktest.data.NetworkClient
 import ru.kryu.vktest.data.network.ApiService
 import ru.kryu.vktest.data.network.RetrofitNetworkClient
 import ru.kryu.vktest.domain.GoodsRepository
+import ru.kryu.vktest.domain.GoodsUseCase
 
 const val API_BASE_URL = "https://dummyjson.com/"
 
@@ -44,7 +45,9 @@ val repositoryModule = module {
 }
 
 val useCaseModule = module {
-
+    single {
+        GoodsUseCase(goodsRepository = get())
+    }
 }
 
 val viewModelModule = module {
