@@ -13,4 +13,39 @@
         tools:itemCount="8"
         tools:listitem="@layout/goods_item" />
 
+    <ImageView
+        android:id="@+id/ivNoContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_160dp"
+        android:contentDescription="@string/no_content_message"
+        android:src="@drawable/no_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvNoContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dimen_8dp"
+        android:text="@string/no_content_message"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnNoContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dimen_8dp"
+        android:text="@string/refresh"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_160dp"
+        android:visibility="gone" />
 </LinearLayout>
