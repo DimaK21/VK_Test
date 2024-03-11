@@ -6,4 +6,6 @@
     <string name="no_content_message">Нет данных, попробуйте ещё раз</string>
     <string name="refresh">Обновить</string>
     <string name="goods_image">Изображение товара</string>
+    <string name="price">Price: %s $</string>
+    <string name="discount">Discount: %s \%</string>
 </resources>

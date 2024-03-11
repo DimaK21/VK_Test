@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/dimen_8dp"
     tools:context=".ui.DetailsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,5 +15,36 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/DetailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/recycler" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        style="@style/DetailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvName" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        style="@style/DetailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textColor="@color/price_color"
+        app:layout_constraintTop_toTopOf="@id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvDiscountPercentage"
+        style="@style/DetailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/discount"
+        app:layout_constraintTop_toTopOf="@id/tvPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
