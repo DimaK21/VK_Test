@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NameText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/name_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DescriptionText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/description_text</item>
+    </style>
+
+    <style name="DetailsTextView">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textSize">@dimen/name_text</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
+
+</resources>

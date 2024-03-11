@@ -1,14 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "ru.kryu.duma.vktest"
+    namespace = "ru.kryu.vktest"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ru.kryu.duma.vktest"
+        applicationId = "ru.kryu.vktest"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -33,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -44,4 +48,15 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+// Retrofit2
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+// Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+// Koin
+    implementation("io.insert-koin:koin-android:3.4.3")
+// Kotlin coroutines on Android
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+// AndroidX Fragment library
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 }
