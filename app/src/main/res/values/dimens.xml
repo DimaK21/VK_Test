@@ -6,4 +6,5 @@
     <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
     <dimen name="dimen_160dp">160dp</dimen>
+    <dimen name="dimen_240dp">240dp</dimen>
 </resources>
