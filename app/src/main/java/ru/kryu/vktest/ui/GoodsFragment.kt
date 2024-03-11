@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,7 +34,16 @@ class GoodsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        goodsAdapter = GoodsAdapter()
+        goodsAdapter = GoodsAdapter { goods ->
+            parentFragmentManager.commit {
+                replace(
+                    R.id.mainFragmentContainerView,
+                    DetailsFragment.newInstance(goods),
+                    DetailsFragment.TAG
+                )
+                addToBackStack(DetailsFragment.TAG)
+            }
+        }
         binding.rvGoods.adapter = goodsAdapter
         binding.rvGoods.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)

@@ -8,7 +8,10 @@ import ru.kryu.vktest.R
 import ru.kryu.vktest.databinding.GoodsItemBinding
 import ru.kryu.vktest.domain.model.Goods
 
-class GoodsViewHolder(private val binding: GoodsItemBinding) :
+class GoodsViewHolder(
+    private val binding: GoodsItemBinding,
+    private val clickListener: GoodsAdapter.GoodsItemClickListener,
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(goods: Goods) {
@@ -22,5 +25,6 @@ class GoodsViewHolder(private val binding: GoodsItemBinding) :
                 RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.card_corner))
             )
             .into(binding.ivThumbnail)
+        itemView.setOnClickListener { clickListener.onGoodsItemClick(goods) }
     }
 }

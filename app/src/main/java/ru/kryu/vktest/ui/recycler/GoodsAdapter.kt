@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.kryu.vktest.databinding.GoodsItemBinding
 import ru.kryu.vktest.domain.model.Goods
 
-class GoodsAdapter : RecyclerView.Adapter<GoodsViewHolder>() {
+class GoodsAdapter(private val clickListener: GoodsItemClickListener) :
+    RecyclerView.Adapter<GoodsViewHolder>() {
 
     private val goodsList: MutableList<Goods> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return GoodsViewHolder(GoodsItemBinding.inflate(inflater, parent, false))
+        return GoodsViewHolder(GoodsItemBinding.inflate(inflater, parent, false), clickListener)
     }
 
     override fun getItemCount(): Int = goodsList.size
@@ -27,5 +28,9 @@ class GoodsAdapter : RecyclerView.Adapter<GoodsViewHolder>() {
         goodsList.clear()
         goodsList.addAll(newGoods)
         diffGoods.dispatchUpdatesTo(this)
+    }
+
+    fun interface GoodsItemClickListener {
+        fun onGoodsItemClick(goods: Goods)
     }
 }
