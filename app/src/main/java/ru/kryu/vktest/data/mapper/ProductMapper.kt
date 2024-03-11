@@ -9,5 +9,8 @@ object ProductMapper {
         title = product.title,
         description = product.description,
         thumbnail = product.thumbnail,
+        price = product.price,
+        discountPercentage = product.discountPercentage,
+        images = product.images,
     )
 }
